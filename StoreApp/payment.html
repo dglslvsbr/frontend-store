@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/icons/store.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/payment.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <script>
+        if (!localStorage.getItem("token") || !localStorage.getItem("shopping-cart"))
+              document.location.replace('index.html');
+    </script>
+    <title>Store - Payment</title>
+</head>
+
+<body>
+   <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+   <menu class="menu">
+        <ul>
+            <li><a href="#" onclick="currentProductCategory(0)">All Products</a></li>
+            <li><a href="#" onclick="currentProductCategory(1)">Hardware</a></li>
+            <li><a href="#" onclick="currentProductCategory(2)">PlayStation</a></li>
+            <li><a href="#" onclick="currentProductCategory(3)">Smartphone</a></li>
+            <li><a href="#" onclick="currentProductCategory(4)">Games</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="order.html">Orders</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+            <li><a id="btn-cart" href="#" onclick="cartVisibility()">&#128722; Cart</a></li>
+        </ul>
+    </menu>
+
+    <div id="global-cart" style="display: none;"></div>
+    
+    <div id="container">
+        <form id="form-payment">
+            <h1 style="font-family: calibri; font-size: 40px;">Payment</h1>
+            <p>The data was filled in automatically</p>
+            <input id="txt-cpf" name="cpf" type="text" placeholder="Enter your CPF" required>
+            <input id="txt-card-number" name="number" type="text" placeholder="Enter your Card Number" required>
+            <input id="txt-card-expiration" name="expiration" type="text" placeholder="Enter your Card Expiration" required>
+            <input id="txt-card-cvv" name="cvv" type="text" placeholder="Enter your Card CVV" required>
+            <label for="installments">Number of installments</label>
+            <select id="installments" name="installments" title="installments">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <input id="btn-finish-buy" type="submit" value="Finish" onclick="processPayment()">
+            <input id="btn-finish-cancel" type="button" value="Cancel" onclick="cancelPurchase()">
+        </form>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/profile.js"></script>
+    <script src="assets/js/payment.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+        function toggleMenu() {
+            const menuList = document.querySelector('.menu ul');
+            menuList.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

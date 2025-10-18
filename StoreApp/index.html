@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/icons/store.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script>
+        if (localStorage.getItem("token"))
+            document.location.replace('main.html');
+    </script>
+    <title>Store - Index</title>
+</head>
+
+<body>
+    <form id="form-login">
+        <h1 style="font-family: Calibri;">Store API - Login</h1>
+        <input id="txt-email" name="email" type="email" placeholder="Enter your email" required>
+        <input id="txt-password" name="password" type="password" placeholder="Enter your password" required>
+        <input id="btn-login" type="submit" onclick="login()" value="Login">
+        <input id="btn-register" type="button" onclick="document.location.href='register.html'" value="Register">
+        <p id="message"></p>
+    </form>
+
+    <footer>
+        <p style="font-family: Calibri;">It is a test-only application, do not enter real data.</p><br>
+        <nav>
+            <a style="margin-left: 80px;" href="https://github.com/dglslvsbr" target="_blank">GitHub</a>
+            <a href="https://instagram.com/dglslvsbr" target="_blank">Instagram</a>
+        </nav>
+    </footer>
+    
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+
+</html>

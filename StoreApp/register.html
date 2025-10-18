@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/icons/store.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/register.css">
+    <script>
+        if (localStorage.getItem("token"))
+            document.location.replace('index.html');
+    </script>
+    <title>Store - Register</title>
+</head>
+
+<body>
+    <form id="form-register">
+        <h1 style="font-family: Calibri;">Store API - Register</h1>
+        <input id="txt-first-name" name="first-name" type="text" placeholder="First name" required>
+        <input id="txt-last-name" name="last-name" type="text" placeholder="Last name" required>
+        <input id="txt-email" name="email" type="email" placeholder="Email" required>
+        <input id="txt-password" name="password" type="password" placeholder="Password" required>
+        <input id="txt-cpf" name="cpf" type="text" placeholder="CPF" required>
+        <input id="txt-phone" name="phone" type="text" placeholder="Phone" required>
+        <input id="txt-street" name="street" type="text" placeholder="Street" required>
+        <input id="txt-house-number" name="house-number" type="text" placeholder="House number" required>
+        <input id="txt-district" name="district" type="text" placeholder="District" required>
+        <input id="txt-city" name="city" type="text" placeholder="City" required>
+        <input id="txt-state" name="state" type="text" placeholder="State" required>
+        <input id="btn-register" type="submit" value="Register" onclick="register()">
+        <input id="btn-back" type="button" value="Back" onclick="document.location.href = 'index.html'">
+        <p id="message"></p>
+    </form>
+    <footer>
+        <p style="font-family: Calibri;">It is a test-only application, do not enter real data.</p><br>
+        <nav>
+            <a style="margin-left: 80px;" href="https://github.com/dglslvsbr" target="_blank">GitHub</a>
+            <a href="https://instagram.com/dglslvsbr" target="_blank">Instagram</a>
+        </nav>
+    </footer>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/register.js"></script>
+</body>
+
+</html>

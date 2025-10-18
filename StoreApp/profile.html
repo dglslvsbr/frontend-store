@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/icons/store.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
+    <script>
+        if (!localStorage.getItem("token"))
+            document.location.replace('index.html');
+    </script>
+    <title>Store - Profile</title>
+</head>
+
+<body>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <menu class="menu">
+        <ul>
+            <li><a href="#" onclick="currentProductCategory(0)">All Products</a></li>
+            <li><a href="#" onclick="currentProductCategory(1)">Hardware</a></li>
+            <li><a href="#" onclick="currentProductCategory(2)">PlayStation</a></li>
+            <li><a href="#" onclick="currentProductCategory(3)">Smartphone</a></li>
+            <li><a href="#" onclick="currentProductCategory(4)">Games</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="order.html">Orders</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+            <li><a id="btn-cart" href="#" onclick="cartVisibility()">&#128722; Cart</a></li>
+        </ul>
+    </menu>
+
+    <div id="global-cart" style="display: none;"></div>
+
+    <div id="client-data"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/profile.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+        function toggleMenu() {
+            const menuList = document.querySelector('.menu ul');
+            menuList.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
