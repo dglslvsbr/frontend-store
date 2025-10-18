@@ -25,7 +25,7 @@ function checkTokenValidity() {
     if (token) {
         const now = Math.floor(Date.now() / 1000);
         if (decodedToken.exp < now) {
-            localStorage.removeItem("token");
+            localStorage.clear();
             document.location.replace('index.html');
         }
     }
