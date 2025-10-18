@@ -35,7 +35,7 @@ manter o backend rodando na porta 7135 (está configurado em launchSettings.json
 <h2>Como usar</h2>
 <p>A primeira coisa que você deve fazer para conseguir usar o Store App é fazer um pull para a sua máquina local.
 Depois é extremamente importante que você faça um pull do backend também. Store App é dependente de uma API RESTful para
-validação, recuperação e persistência de dados. Você pode <a href='https://github.com/dglslvsbr/storeapi' target='_blank'>Clicar aqui</a>
+validação, recuperação e persistência de dados. Você pode <a href='https://github.com/dglslvsbr/api-dotnet-store' target='_blank'>Clicar aqui</a>
 para ser redirecionado para a Store API. <br> Você também não pode se esquecer de seguir as instruções do README.md da Store API.</p>
 
 <p>Antes de iniciar, certifique-se de ter instalado:</p>
