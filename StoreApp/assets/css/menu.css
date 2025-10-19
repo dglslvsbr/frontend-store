@@ -27,7 +27,7 @@
   font-size: 28px;
   color: white;
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 12px 20px;
 }
 
 @media (max-width: 1280px) {
@@ -38,7 +38,7 @@
     position: absolute;
     top: 60px;
     left: 0;
-    width: 100%;
+    width: 20%;
     z-index: 1000;
   }
   .menu ul.active {
@@ -53,6 +53,12 @@
   .menu{
     background-color: #ecf0f1;
     max-width: 0;
+  }
+}
+
+@media (max-width: 620px){
+  .menu ul{
+    width: 40%;
   }
 }
 

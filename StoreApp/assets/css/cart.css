@@ -15,6 +15,12 @@
     z-index: 9999;
 }
 
+@media (max-width: 620px){
+    #global-cart{
+        width: 50%;
+    }
+}
+
 #global-cart img {
     width: 100px;
     margin: 0;
