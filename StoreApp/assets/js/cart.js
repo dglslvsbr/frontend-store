@@ -77,12 +77,23 @@ function renderTheCart() {
 
   for (const product of productListJson) {
     cartList.innerHTML += `<div id='${product.id}'>
-                                 <p>${product.name}</p>
-                                 <img src='${product.imageUrl}'></img>
-                                 <p>R$ ${product.price}</p>
-                               </div>`
+                              <p>${product.name}</p>
+                              <img src='${product.imageUrl}'></img>
+                              <p>R$ ${product.price}</p>
+                              <input id='${product.id}' type='button'
+                              value='Remove' onclick='removeProductCart(${product.id})'
+                              style='margin-bottom: 100px'>
+                           </div>`
   }
   sumProductsInTheCart(productListJson);
+}
+
+function removeProductCart(id){
+  const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
+  if (!shoppingCart) return;
+  const shoppingCartUpdated = shoppingCart.filter(p => p.id != id);
+  localStorage.setItem('shopping-cart', JSON.stringify(shoppingCartUpdated));
+  setTimeout(() => renderTheCart(), 100)
 }
 
 function sumProductsInTheCart(productList) {
