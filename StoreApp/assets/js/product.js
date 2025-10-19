@@ -14,10 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
       <p id='product-description'>${currentProduct.description}</p><br>`;
 
     const labelQuantity = document.createElement('label');
+    labelQuantity.htmlFor = 'select-quantity'
     labelQuantity.innerHTML = 'Quantity:<br>';
 
     const quantity = document.createElement('select');
-    quantity.id = 'quantity';
+    quantity.id = 'select-quantity';
     quantity.title = 'quantity';
     quantity.innerHTML = `<option name='1'>1</option>
                           <option name='2'>2</option>

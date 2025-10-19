@@ -49,6 +49,10 @@ body {
     }
 }
 
+select{
+    border: none;
+}
+
 button {
     border: none;
     border-radius: 8px;
@@ -62,5 +66,9 @@ button {
 
 select:hover,
 button:hover {
+    transform: scale(1.02);
+}
+
+select:open{
     transform: scale(1.02);
 }

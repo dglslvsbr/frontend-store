@@ -8,7 +8,7 @@ document.addEventListener('click', function (event) {
 });
 
 function addProductCart(currentProduct) {
-  currentProduct.quantity = document.getElementById('quantity').value;
+  currentProduct.quantity = document.getElementById('select-quantity').value;
   let cartArray;
 
   try {
@@ -36,16 +36,16 @@ function message(text, exist) {
   if (exist) {
     element.innerHTML = text;
     element.style = `margin: 30px;
-                         color: green;
-                         border: 1px solid green;
-                         border-radius: 8px;`
+                     color: green;
+                     border: 1px solid green;
+                     border-radius: 8px;`
   }
   else {
     element.innerHTML = text;
     element.style = `margin: 30px;
-                         color: red;
-                         border: 1px solid red;
-                         border-radius: 8px;`
+                     color: red;
+                     border: 1px solid red;
+                     border-radius: 8px;`
   }
 }
 
@@ -71,21 +71,42 @@ function renderTheCart() {
                         <p id="total-cart" style="color: #fff;
                         font-size: 20px; text-align: center;">Total: R$ 0,00</p>`
 
-  const productList = localStorage.getItem("shopping-cart");
-
-  var productListJson = JSON.parse(productList);
+  const productListJson = JSON.parse(localStorage.getItem("shopping-cart"));
 
   for (const product of productListJson) {
-    cartList.innerHTML += `<div id='${product.id}'>
+    cartList.innerHTML += `<div class='${product.id}'>
                               <p>${product.name}</p>
-                              <img src='${product.imageUrl}'></img>
+                              <img src='${product.imageUrl}' alt='product-image'></img>
                               <p>R$ ${product.price}</p>
-                              <input id='${product.id}' type='button'
+                              <input class='remove-product' type='button'
                               value='Remove' onclick='removeProductCart(${product.id})'
                               style='margin-bottom: 100px'>
+                              <input class='quantity-product' type='number'
+                              min='1' max='5' placeholder='Quantity'
+                              onkeydown='return false;' value='${product.quantity}'
+                              onchange='refreshProductQuantity
+                              (this.value,${product.id})'>
                            </div>`
   }
   sumProductsInTheCart(productListJson);
+}
+
+function refreshProductQuantity(productQuantity, productId) {
+  const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
+  if (!shoppingCart) return;
+
+  const productById = shoppingCart.find(p => p.id == productId);
+  if (!productById) return;
+
+  productById.quantity = productQuantity;
+
+  const shoppingCartUpdated = shoppingCart.filter(p => p.id != productId);
+  shoppingCartUpdated.push(productById);
+
+  localStorage.setItem('shopping-cart', JSON.stringify(shoppingCartUpdated));
+
+  document.getElementById('select-quantity').value =
+  document.getElementsByClassName('quantity-product')[0].value;
 }
 
 function removeProductCart(id){
