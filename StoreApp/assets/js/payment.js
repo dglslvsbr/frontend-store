@@ -59,7 +59,10 @@ function getPaymentData() {
 async function processPayment() {
     const productList = getShoppingCart();
 
-    if (!productList || productList.length === 0) return;
+    if (!productList || productList.length === 0) {
+        document.location.replace('main.html');
+        return;
+    }
 
     const paymentData = getPaymentData();
 
