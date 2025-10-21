@@ -33,6 +33,21 @@ function checkTokenValidity() {
 
 setInterval(() => checkTokenValidity(), 5000)
 
+setInterval(async () => {
+    try {
+        await fetch(API_URL +
+        "Product/GetAllPaginated?pageNumber=1&pageSize=10", {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+    } catch (error) {
+        localStorage.clear();
+        document.location.replace('index.html');
+    }
+}, 10000);
+
 async function fetchClient(email) {
     try {
         const response = await fetch(API_URL + `Client/GetByEmail/${email}`, {
