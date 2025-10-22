@@ -94,12 +94,16 @@ async function processPayment() {
         }
         else {
             const element = document.getElementById('message');
-            element.style = `margin: 20px;
+            element.style = `font-size: 20px;
+                             margin: 20px;
                              padding: 5px;
                              color: red;
                              border: 1px solid red;
                              border-radius: 8px;`
-            element.innerHTML = data;
+            if (data.message)
+                element.innerHTML = data.message;
+            else
+                element.innerHTML = data;
         }
     } catch (error) {
         console.log(error);
