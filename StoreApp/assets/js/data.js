@@ -1,4 +1,4 @@
-localStorage.setItem("API_URL", "https://localhost:7135/api/");
+localStorage.setItem("API_URL", "http://localhost:5091/api/");
 const API_URL = localStorage.getItem("API_URL");
 
 const token = getToken();
