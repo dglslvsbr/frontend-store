@@ -35,14 +35,16 @@ function message(text, exist) {
   const element = document.getElementById('message');
   if (exist) {
     element.innerHTML = text;
-    element.style = `margin: 30px;
+    element.style = `font-size: 20px;
+                     margin: 30px;
                      color: green;
                      border: 1px solid green;
                      border-radius: 8px;`
   }
   else {
     element.innerHTML = text;
-    element.style = `margin: 30px;
+    element.style = `font-size: 20px;
+                     margin: 30px;
                      color: red;
                      border: 1px solid red;
                      border-radius: 8px;`
