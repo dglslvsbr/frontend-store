@@ -60,4 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     message.id = 'message';
     viewProduct.appendChild(message);
   }
+
+  const productList = JSON.parse(localStorage.getItem("categoryCache"));
+
+  setTimeout(() => {
+      showData(productList);
+  }, 100);
 });
