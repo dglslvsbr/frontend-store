@@ -70,7 +70,7 @@ function renderTheCart() {
 
   cartList.innerHTML = `<h3 style="color: #fff;
                         font-size: 40px; text-align: center;">Cart</h3>
-                        <p id="total-cart" style="color: #fff;
+                        <p id="total-cart" style="color: #27ae60;
                         font-size: 20px; text-align: center;">Total: R$ 0,00</p>`
 
   const productListJson = JSON.parse(localStorage.getItem("shopping-cart"));
@@ -79,27 +79,44 @@ function renderTheCart() {
     cartList.innerHTML += `<div class='${product.id}'>
                               <p>${product.name}</p>
                               <img src='${product.imageUrl}' alt='product-image'></img>
-                              <p>R$ ${product.price}</p>
+                              <p id='${product.id}' style='color:#27ae60'>R$ ${product.price}</p>
                               <input class='remove-product' type='button'
                               value='Remove' onclick='removeProductCart(${product.id})'
                               style='margin-bottom: 100px'>
                               <input class='quantity-product' type='number'
                               min='1' max='5' placeholder='Quantity'
                               onkeydown='return false;' value='${product.quantity}'
-                              onchange='refreshProductQuantity
+                              onclick='refreshProductQuantity
                               (this.value,${product.id})'>
                            </div>`
   }
-  sumProductsInTheCart(productListJson);
+}
+
+setInterval(() => refreshTotalCart(), 100);
+
+function refreshTotalCart(){
+  const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+  const totalCartElement = document.getElementById('total-cart');
+  if (!totalCartElement) return;
+
+  let sumCart = 0;
+  for (const p of shoppingCart)
+    sumCart += parseFloat(p.price * p.quantity);
+
+   totalCartElement.innerHTML = `Total: R$ ${sumCart}`;
 }
 
 function refreshProductQuantity(productQuantity, productId) {
-  const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
+  const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
   if (!shoppingCart) return;
 
   const productById = shoppingCart.find(p => p.id == productId);
   if (!productById) return;
+  
+  const productPrice = document.getElementById(`${productId}`);
+  if (!productPrice) return;
 
+  productPrice.innerHTML = `R$ ${productById.price * productQuantity}`
   productById.quantity = productQuantity;
 
   const shoppingCartUpdated = shoppingCart.filter(p => p.id != productId);
@@ -108,26 +125,13 @@ function refreshProductQuantity(productQuantity, productId) {
   localStorage.setItem('shopping-cart', JSON.stringify(shoppingCartUpdated));
 
   document.getElementById('select-quantity').value =
-  document.getElementsByClassName('quantity-product')[0].value;
+    document.getElementsByClassName('quantity-product')[0].value;
 }
 
-function removeProductCart(id){
+function removeProductCart(id) {
   const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
   if (!shoppingCart) return;
   const shoppingCartUpdated = shoppingCart.filter(p => p.id != id);
   localStorage.setItem('shopping-cart', JSON.stringify(shoppingCartUpdated));
   setTimeout(() => renderTheCart(), 100)
-}
-
-function sumProductsInTheCart(productList) {
-  if (!productList)
-    return;
-
-  let sum = 0.0;
-  for (const product of productList)
-    sum += product.price
-
-  const totalCart = document.getElementById('total-cart');
-  totalCart.style.color = 'green'
-  totalCart.innerHTML = `Total: R$ ${sum}`;
 }
