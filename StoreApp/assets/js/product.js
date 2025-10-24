@@ -7,11 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewProduct = document.querySelector(".view-product");
 
   if (viewProduct) {
-    viewProduct.id = currentProduct.id;
+    viewProduct.class = currentProduct.id;
     viewProduct.innerHTML = `
       <p id='product-name'>${currentProduct.name}</p>
       <img src="${currentProduct.imageUrl}" alt="view-product">
-      <p id='product-description'>${currentProduct.description}</p><br>`;
+      <p id='product-description'>${currentProduct.description}</p><br>
+      <p style='font-size: 50px; color: #27ae60; margin-bottom: 10px;' id='product-price'>R$ ${currentProduct.price}</p>`;
 
     const labelQuantity = document.createElement('label');
     labelQuantity.htmlFor = 'select-quantity'
@@ -25,9 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
                           <option name='3'>3</option>
                           <option name='4'>4</option>
                           <option name='5'>5</option>`
-    quantity.style = `width: 300px;
+    quantity.style = `margin-top: 5px;
+                      width: 300px;
                       height: 40px;
-                      font-size: 15px;
                       border-radius: 8px;
                       outline: none`;
 
