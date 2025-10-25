@@ -8,17 +8,10 @@ document.addEventListener('click', function (event) {
 });
 
 function addProductCart(currentProduct) {
-  currentProduct.quantity = document.getElementById('select-quantity').value;
-  let cartArray;
+  currentProduct.quantity = document
+    .getElementById('select-quantity').value;
 
-  try {
-    cartArray = JSON.parse(localStorage.getItem("shopping-cart"));
-    if (!Array.isArray(cartArray)) {
-      cartArray = [];
-    }
-  } catch (e) {
-    cartArray = [];
-  }
+  const cartArray = JSON.parse(localStorage.getItem("shopping-cart")) || [];
 
   const exist = cartArray.some(p => p.id === currentProduct.id);
 
@@ -94,7 +87,7 @@ function renderTheCart() {
 
 setInterval(() => refreshTotalCart(), 100);
 
-function refreshTotalCart(){
+function refreshTotalCart() {
   const shoppingCart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
   const totalCartElement = document.getElementById('total-cart');
   if (!totalCartElement) return;
@@ -103,7 +96,7 @@ function refreshTotalCart(){
   for (const p of shoppingCart)
     sumCart += parseFloat(p.price * p.quantity);
 
-   totalCartElement.innerHTML = `Total: R$ ${sumCart}`;
+  totalCartElement.innerHTML = `Total: R$ ${sumCart}`;
 }
 
 function refreshProductQuantity(productQuantity, productId) {
@@ -112,7 +105,7 @@ function refreshProductQuantity(productQuantity, productId) {
 
   const productById = shoppingCart.find(p => p.id == productId);
   if (!productById) return;
-  
+
   const productPrice = document.getElementById(`${productId}`);
   if (!productPrice) return;
 

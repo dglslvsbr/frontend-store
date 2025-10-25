@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p id='product-name'>${currentProduct.name}</p>
       <img src="${currentProduct.imageUrl}" alt="view-product">
       <p id='product-description'>${currentProduct.description}</p><br>
-      <p style='font-size: 50px; color: #27ae60; margin-bottom: 10px;' id='product-price'>R$ ${currentProduct.price}</p>`;
+      <p style='font-size: 40px; color: #27ae60; margin-bottom: 10px;' id='product-price'>R$ ${currentProduct.price}</p>`;
 
     const labelQuantity = document.createElement('label');
     labelQuantity.htmlFor = 'select-quantity'
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     viewProduct.appendChild(quantity);
 
     const buy = document.createElement('button');
-    buy.innerHTML = 'Buy Now';
+    buy.innerHTML = 'Buy';
     buy.type = 'button';
     buy.onclick = () => {
       addProductCart(currentProduct);
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const addToCart = document.createElement('button');
-    addToCart.innerHTML = 'Add to cart'
+    addToCart.innerHTML = 'Add cart'
     addToCart.type = 'button';
     addToCart.onclick = () => {
       addProductCart(currentProduct);
@@ -65,6 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const productList = JSON.parse(localStorage.getItem("categoryCache"));
 
   setTimeout(() => {
-      showData(productList);
+    showData(productList);
   }, 100);
 });

@@ -32,15 +32,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 async function getProductsByCategory(categoryId, pageNumber, pageSize) {
     document.getElementById('products-list').innerHTML = '';
-    const cacheResponse = await getOrSetCache("CategoryCache/"+categoryId,
-         API_URL + `Product/GetAllProductsByCategory/${categoryId}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    const cacheResponse = await getOrSetCache("CategoryCache/" + categoryId,
+        API_URL + `Product/GetAllProductsByCategory/${categoryId}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
     showData(cacheResponse);
 }
 
 async function getAllProducts() {
     document.getElementById('products-list').innerHTML = '';
     const cacheResponse = await getOrSetCache(categoryCache,
-         API_URL + 'Product/GetAllPaginated?pageNumber=1&pageSize=20');
+        API_URL + 'Product/GetAllPaginated?pageNumber=1&pageSize=20');
     showData(cacheResponse);
 }
 
@@ -50,19 +50,28 @@ function showData(list) {
     for (const product of list.data) {
         const card = document.createElement('div');
         card.id = `${product.id}`
+        card.onclick = () => {
+            localStorage.setItem("currentProduct", JSON.stringify(product));
+            window.location.replace('product.html')
+        };
         card.className = 'product-card';
         card.innerHTML = `<h3>${product.name}</h3>
                           <img src='${product.imageUrl}' alt='${product.name}'>
                           <p class='product-price'>R$ ${product.price}</p>`;
 
-        const viewProduct = document.createElement('button');
-        viewProduct.innerHTML = 'View';
-        viewProduct.type = 'button';
-        viewProduct.onclick = () => {
-            localStorage.setItem("currentProduct", JSON.stringify(product));
-            window.location.replace('product.html')
-        }
-        card.appendChild(viewProduct);
+        const buyProduct = document.createElement('button');
+        buyProduct.innerHTML = 'Buy';
+        buyProduct.type = 'button';
+        buyProduct.onclick = (event) => {
+            event.stopPropagation();
+            const cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
+            product.quantity = 1;
+            cart.push(product);
+            localStorage.setItem('shopping-cart', JSON.stringify(cart));
+            window.location.replace('payment.html');
+        };
+
+        card.appendChild(buyProduct);
 
         container.appendChild(card);
     }
