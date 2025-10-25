@@ -28,7 +28,7 @@
             <li><a href="profile.html">Profile</a></li>
             <li><a href="order.html">Orders</a></li>
             <li><a href="#" onclick="logout()">Logout</a></li>
-            <li><a id="btn-cart" href="#" onclick="cartVisibility()">&#128722; Cart</a></li>
+            <li><a id="btn-cart" href="#">&#128722; Cart</a></li>
         </ul>
     </menu>
 
@@ -62,11 +62,12 @@
         </form>
     </div>
 
+    <script src="assets/js/cart.js"></script>
     <script src="assets/js/data.js"></script>
     <script src="assets/js/profile.js"></script>
     <script src="assets/js/payment.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/cart.js"></script>
+   
     <script>
         function toggleMenu() {
             const menuList = document.querySelector('.menu ul');

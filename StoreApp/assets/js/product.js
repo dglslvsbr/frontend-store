@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <p id='product-name'>${currentProduct.name}</p>
       <img src="${currentProduct.imageUrl}" alt="view-product">
       <p id='product-description'>${currentProduct.description}</p><br>
-      <p style='font-size: 40px; color: #27ae60; margin-bottom: 10px;' id='product-price'>R$ ${currentProduct.price}</p>`;
+      <p style='font-size: 40px; color: #27ae60; margin-bottom: 10px;' id='product-price'><strong>${currentProduct.price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></p>`;
 
     const labelQuantity = document.createElement('label');
     labelQuantity.htmlFor = 'select-quantity'

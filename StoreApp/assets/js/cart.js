@@ -3,7 +3,8 @@ document.addEventListener('click', function (event) {
   const btnCart = document.getElementById('btn-cart');
 
   if (!cart.contains(event.target) &&
-    !btnCart.contains(event.target))
+    !btnCart.contains(event.target) &&
+    !window.location.pathname.includes('payment.html'))
     cart.style.display = 'none';
 });
 
@@ -52,7 +53,7 @@ function cartVisibility() {
     renderTheCart();
   }
 
-  else
+  else 
     menu.style.display = 'none';
 }
 
@@ -66,13 +67,22 @@ function renderTheCart() {
                         <p id="total-cart" style="color: #27ae60;
                         font-size: 20px; text-align: center;">Total: R$ 0,00</p>`
 
+  if (JSON.parse(localStorage.getItem('shopping-cart')).length > 0){
+    cartList.innerHTML += `<input id='complete-purchase'
+                           type='button' value='Complete Purchase'
+                           onclick="completePayment()">
+                           <input id='clear-cart'
+                           type='button' value='Clear Cart'
+                           onclick="clearCart()">`
+  }
+
   const productListJson = JSON.parse(localStorage.getItem("shopping-cart"));
 
   for (const product of productListJson) {
     cartList.innerHTML += `<div class='${product.id}'>
                               <p>${product.name}</p>
                               <img src='${product.imageUrl}' alt='product-image'></img>
-                              <p id='${product.id}' style='color:#27ae60'>R$ ${product.price}</p>
+                              <p id='${product.id}' style='color:#27ae60'><strong>${product.price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></p>
                               <input class='remove-product' type='button'
                               value='Remove' onclick='removeProductCart(${product.id})'
                               style='margin-bottom: 100px'>
@@ -83,6 +93,16 @@ function renderTheCart() {
                               (this.value,${product.id})'>
                            </div>`
   }
+}
+
+function completePayment() {
+  if (!document.location.pathname.includes('payment.html'))
+    document.location.replace('payment.html')
+}
+
+function clearCart(){
+  localStorage.removeItem('shopping-cart')
+  renderTheCart();
 }
 
 setInterval(() => refreshTotalCart(), 100);
@@ -96,7 +116,7 @@ function refreshTotalCart() {
   for (const p of shoppingCart)
     sumCart += parseFloat(p.price * p.quantity);
 
-  totalCartElement.innerHTML = `Total: R$ ${sumCart}`;
+  totalCartElement.innerHTML = `<strong>${sumCart.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong>`;
 }
 
 function refreshProductQuantity(productQuantity, productId) {
@@ -109,7 +129,7 @@ function refreshProductQuantity(productQuantity, productId) {
   const productPrice = document.getElementById(`${productId}`);
   if (!productPrice) return;
 
-  productPrice.innerHTML = `R$ ${productById.price * productQuantity}`
+  productPrice.innerHTML = `<strong>${(productById.price * productQuantity).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong>`
   productById.quantity = productQuantity;
 
   const shoppingCartUpdated = shoppingCart.filter(p => p.id != productId);

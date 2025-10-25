@@ -57,7 +57,7 @@ function showData(list) {
         card.className = 'product-card';
         card.innerHTML = `<h3>${product.name}</h3>
                           <img src='${product.imageUrl}' alt='${product.name}'>
-                          <p class='product-price'>R$ ${product.price}</p>`;
+                          <p class='product-price'><strong>${product.price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</strong></p>`;
 
         const buyProduct = document.createElement('button');
         buyProduct.innerHTML = 'Buy';
@@ -66,9 +66,13 @@ function showData(list) {
             event.stopPropagation();
             const cart = JSON.parse(localStorage.getItem('shopping-cart')) || [];
             product.quantity = 1;
-            cart.push(product);
-            localStorage.setItem('shopping-cart', JSON.stringify(cart));
-            window.location.replace('payment.html');
+            if (!cart.some(x => x.id == product.id)) {
+                cart.push(product);
+                localStorage.setItem('shopping-cart', JSON.stringify(cart));
+                window.location.replace('payment.html');
+            }
+            else
+                window.location.replace('payment.html');
         };
 
         card.appendChild(buyProduct);

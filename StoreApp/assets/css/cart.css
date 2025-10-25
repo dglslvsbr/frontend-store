@@ -64,3 +64,16 @@
     outline: none;
     text-align: center;
 }
+
+#complete-purchase, #clear-cart{
+    width: 100%;
+    max-width: 50%;
+    height: 30px;
+    padding: 5px;
+    color: #fff;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 0;
+    margin: 3px
+}

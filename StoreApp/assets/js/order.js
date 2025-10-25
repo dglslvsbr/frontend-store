@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p><strong>State:</strong> ${orderState(order.currentState)}</p>
                     <p><strong>Installments:</strong> ${order.installments}x</p>
                     <p><strong>Name:</strong> ${orderItem.product.name}</p>
-                    <p><strong>Price:</strong> R$ ${orderItem.product.price}</p>
+                    <p><strong>Price:</strong> ${orderItem.product.price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
                     <p><strong>Quantity:</strong> ${orderItem.quantity}</p>
                 `;
                 element.appendChild(orderDiv);

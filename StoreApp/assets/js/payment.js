@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     message.id = 'message';
 
     formPayment.appendChild(message);
+
+    cartVisibility();
 });
 
 window.onload = () =>
@@ -29,7 +31,7 @@ window.onload = () =>
 function getShoppingCart() {
     const shoppingCartArray = JSON.parse(localStorage.getItem('shopping-cart'));
 
-    if (shoppingCartArray.length == 0) return;
+    if (!shoppingCartArray || shoppingCartArray.length === 0) return [];
 
     const productList = [];
     for (var product of shoppingCartArray)
@@ -58,6 +60,7 @@ function getPaymentData() {
 
 async function processPayment() {
     const productList = getShoppingCart();
+
 
     if (!productList || productList.length === 0) {
         document.location.replace('main.html');
@@ -111,6 +114,5 @@ async function processPayment() {
 }
 
 function cancelPurchase() {
-    localStorage.removeItem('shopping-cart')
     document.location.replace('main.html');
 }
