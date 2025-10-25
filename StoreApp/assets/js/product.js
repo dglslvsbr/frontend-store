@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productList = JSON.parse(localStorage.getItem("categoryCache"));
 
   setTimeout(() => {
-    showData(productList);
+    if (window.location.pathname.includes('product.html'))
+      showData(productList);
   }, 100);
 });
