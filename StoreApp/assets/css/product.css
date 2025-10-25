@@ -26,7 +26,7 @@ body {
 }
 
 p{
-    font-size: 17px;
+    font-size: 20px;
 }
 
 @media (max-width: 620px) {
@@ -58,6 +58,7 @@ label{
 
 select{
     border: none;
+    margin-bottom: 15px;
 }
 
 button {
@@ -66,9 +67,9 @@ button {
     background-color: #1a1a1a;
     color: #fff;
     cursor: pointer;
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: 40px;
-    margin-top: 50px;
 }
 
 select:hover,
