@@ -3,13 +3,18 @@ window.onload = () =>
         .addEventListener("submit", (e) => e.preventDefault());
 
 async function register() {
+    const element = document.getElementById('message');
+    element.innerHTML = '';
+    element.style = '';
+
     const form = document.getElementById("form-register");
 
     const formData = new FormData(form);
 
-    for (const data of formData.values())
-        if (!data)
-            return;
+    const optionSelected = document.getElementById('select-state').value
+
+    if (optionSelected == 'Selecione um estado')
+        element.innerHTML = "State is required"
 
     const payload = {
         firstName: formData.get("first-name"),
@@ -23,15 +28,11 @@ async function register() {
             number: formData.get("house-number"),
             district: formData.get("district"),
             city: formData.get("city"),
-            state: formData.get("state")
+            state: formData.get("select-state")
         }
     }
 
     try {
-        const element = document.getElementById('message');
-        element.innerHTML = '';
-        element.style = '';
-
         const response = await fetch(API_URL + "Client/Create", {
             method: 'POST',
             headers: {
@@ -45,7 +46,7 @@ async function register() {
             window.location.replace('index.html');
             console.log(data.message);
         }
-        else{
+        else {
             element.style = `margin-top: 20px;
                              font-family: calibri;
                              font-size: 20px;
@@ -53,9 +54,12 @@ async function register() {
                              border-radius: 8px;
                              border: 1px solid red;
                              padding: 5px;`;
-            element.innerHTML = data.message;
+
+            if (data.errors && Object.keys(data.errors).length > 0)
+                element.innerHTML = Object.values(data.errors)[0][0];
+            else
+                element.innerHTML = data.message
         }
-           
     } catch (error) {
         console.log(error);
     }
