@@ -27,7 +27,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-input {
+input, select {
     border-radius: 8px;
     border: 0;
     width: 300px;
@@ -48,10 +48,15 @@ input {
 
 a:hover,
 input:hover,
-button:hover {
+button:hover,
+select:hover {
     transform: scale(1.02);
     opacity: 0.9;
     box-shadow: 0 0 0 1px #1a1a1a;
+}
+
+select:open{
+    transform: scale(1.02);
 }
 
 a {

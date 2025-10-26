@@ -26,7 +26,14 @@
         <input id="txt-house-number" name="house-number" type="text" placeholder="House number" required>
         <input id="txt-district" name="district" type="text" placeholder="District" required>
         <input id="txt-city" name="city" type="text" placeholder="City" required>
-        <input id="txt-state" name="state" type="text" placeholder="State" required>
+        <select name="select-state" id="select-state">
+            <option value="" selected>Selecione um estado</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+            <option value="Bahia">Bahia</option>
+            <option value="Ceará">Ceará</option>
+            <option value="Minas Gerais">Minas Gerais</option>
+        </select>
         <input id="btn-register" type="submit" value="Register" onclick="register()">
         <input id="btn-back" type="button" value="Back" onclick="document.location.href = 'index.html'">
         <p id="message"></p>
