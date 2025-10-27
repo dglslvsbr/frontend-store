@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     <p><strong>Number:</strong> ${client.data.creditCard.number}</p>
     <p><strong>Expiration:</strong> ${convertData(client.data.creditCard.expiration)}</p>
     <p><strong>CVV:</strong> ${client.data.creditCard.cvv}</p>
-    <p><strong>Used Limit R$:</strong> ${client.data.creditCard.usedLimit}</p>
-    <p><strong>Max Limit R$:</strong> ${client.data.creditCard.maxLimit}</p>`;
+    <p><strong>Used limit: </strong>${(client.data.creditCard.usedLimit).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
+    <p><strong>Max limit: </strong>${(client.data.creditCard.maxLimit).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>`;
     
     element.appendChild(clientInfo);
     element.appendChild(addressInfo);
